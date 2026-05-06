@@ -14,7 +14,7 @@ if __name__ == '__main__':
     parser.add_argument('--epname',type=str,nargs='+', default=['all'])
     parser.add_argument('--expname',type=str)
     parser.add_argument('--api_key')
-    parser.add_argument('--truncate_lim',type=int,default=None)
+    parser.add_argument('--truncate_length',type=int,default=None)
     parser.add_argument('--exp_path',default='experiments')
     ARGS = parser.parse_args()
 
@@ -36,8 +36,8 @@ if __name__ == '__main__':
             print(movie_name)
             if movie_name not in all_scores:
                 summary = open(f'{expdir}/{movie_name}.txt').read()
-                if ARGS.truncate_lim is not None:
-                    summary = ' '.join(summary.split(' ')[:ARGS.truncate_lim])
+                if ARGS.truncate_length is not None:
+                    summary = ' '.join(summary.split(' ')[:ARGS.truncate_length])
                 vision_facts = open(f'gpt-extracted-facts_{version_facts}/vision_facts/{movie_name}').read().split('\n')
                 text_facts = open(f'gpt-extracted-facts_{version_facts}/text_facts/{movie_name}').read().split('\n')
                 vision_facts = '\n'.join(['* ' + f for f in vision_facts])

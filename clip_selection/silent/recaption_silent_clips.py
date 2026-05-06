@@ -5,13 +5,13 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--api_key',type=str)
-parser.add_argument('--captioning_model',type=str,choices=['qwen', 'gemini'], default='qwen')
+parser.add_argument('--captioning_model',type=str,choices=['qwen_omni', 'gemini-2.5-flash-lite'], default='qwen_omni')
 ARGS = parser.parse_args()
 
 include_transcripts = False # True
 input_path = 'SummScreen/selected_clips'
 
-if ARGS.captioning_model == 'qwen':
+if ARGS.captioning_model == 'qwen_omni':
     from mllm.prompt_qwen_omni import Qwen_Omni
     output_path = 'selected_clips_qwen_omni_captions'
     prompter = Qwen_Omni(params=7)
