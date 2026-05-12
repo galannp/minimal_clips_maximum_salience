@@ -98,22 +98,23 @@ def align_transcripts(epname, closed_captions_dir, aligned_transcripts_dir, tran
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--closed_captions_dir',type=str)
-    parser.add_argument('--aligned_transcripts_dir',type=str)
-    parser.add_argument('--transcripts_dir',type=str)
     parser.add_argument('--print_full_aligned',action='store_true')
     parser.add_argument('--epname',type=str,nargs='+',default=['all'])
     ARGS = parser.parse_args()
 
+    closed_captions_dir = "SummScreen/closed_captions"
+    aligned_transcripts_dir = "SummScreen/aligned_transcripts"
+    transcripts_dir = "SummScreen/transcripts"
+
     if ARGS.epname == ['all']:
-        all_epnames = [fn[:-4] for fn in os.listdir('SummScreen/videos') if fn.endswith('.mp4') and f'{fn[:-4]}.json' in os.listdir(ARGS.closed_captions_dir)]
+        all_epnames = [fn[:-4] for fn in os.listdir('SummScreen/videos') if fn.endswith('.mp4') and f'{fn[:-4]}.json' in os.listdir(closed_captions_dir)]
         for en in all_epnames:
-            if not (os.path.exists(f'{ARGS.aligned_transcripts_dir}/{en}.json')):
+            if not (os.path.exists(f'{aligned_transcripts_dir}/{en}.json')):
                 print(f'aligning {en}')
-                align_transcripts(en, ARGS.closed_captions_dir, ARGS.aligned_transcripts_dir, ARGS.transcripts_dir)
+                align_transcripts(en, closed_captions_dir, aligned_transcripts_dir, transcripts_dir)
             else:
                 print(f'alignment already exist for {en}')
     else:
         for en in ARGS.epname:
-            align_transcripts(en, ARGS.closed_captions_dir, ARGS.aligned_transcripts_dir, ARGS.transcripts_dir)
+            align_transcripts(en, closed_captions_dir, aligned_transcripts_dir, transcripts_dir)
     print(f'num without scene captions: {N_WITHOUT_CAPTIONS}')
