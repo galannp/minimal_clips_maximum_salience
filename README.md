@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ## Configure Paths
 Update dataset, model, and API key locations in [`paths.py`](paths.py) before running the scripts.
 
-## Loading the Data [`load_data/`](load_data)
+## Loading the Data ([`load_data/`](load_data))
 Our experiments are made on the test split of the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) dataset made of 200 movies for evaluation.  
 **1. Download the videos**  
 Download the videos in .mp4 for all the movies on [MovieBox](http://moviebox.ph/)
@@ -52,7 +52,7 @@ Download the videos in .mp4 for all the movies on [MovieBox](http://moviebox.ph/
 python -m load_data.extract_annotated_data
 ```
 
-## Preparing the Data
+## Preparing the Data ([`prepare_data/`](prepare_data))
 **1. Aligning Videos and Dialogues in Time**
 ```
 python -m prepare_data.asr_transcripts
@@ -65,7 +65,7 @@ python -m prepare_data.aligned_screenplays_from_aligned_transcripts
 python -m prepare_data.video_segmentation
 ```
 
-## Video Clip Selection
+## Video Clip Selection ([`clip_selection/`](clip_selection))
 We set the number of selected clips `--nb_clips` to `50` in what follows (other values studied in the paper: `25`, `75`).  
 Choose one of the following Clip Selection approaches:
 
@@ -116,7 +116,7 @@ python -m clip_selection.silent.extract_silent_clips --nb_clips 50
 python -m clip_selection.recaption.recaption_silent_clips --captioning_model gemini-2.5-flash-lite --api_key `YOUR_GOOGLE_API_KEY`
 ```
 
-## Clip Selection Evaluation
+## Clip Selection Evaluation ([`clip_selection/`](clip_selection))
 **1. Clip Selection Reference**  
 We automatically build a reference for the Clip Selection task given the existing annotations given in the `MovieSum` dataset.
 ```
@@ -142,7 +142,7 @@ python -m clip_selection.eval.plot_recall_at_k --K 50
 </p>
 
 
-## Screenplay Summarization
+## Screenplay Summarization ([`summ/`](summ))
 **1. Build the Screenplays**  
 Flags:
 - `--clip_selection`: the clip selection algorithm used. Choose between `ours`, `random` or `silent`.
@@ -175,7 +175,7 @@ python -m summ.upperbound.screenplay_upperbound_clips
 python -m summ.summarize_screenplay --version gemini-2.5-flash --api_key `YOUR_GOOGLE_API_KEY` --path `reference_screenplays_dir` --nb_words 1000
 ```
 
-## Evaluation
+## Evaluation ([`summ/eval/`](summ/eval))
 **1. Evaluation on Traditional Metrics (ROUGE and METEOR)**  
 Flags:
 - `--expname`: directory path to the generated summaries.
