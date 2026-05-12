@@ -1,3 +1,4 @@
+<a id="pipeline-fig"></a>
 # [Minimal Clips, Maximum Salience: Long Video Summarization via Key Moment Extraction (IWSDS 2026)](https://aclanthology.org/2026.iwsds-1.22/)
 
 [[📝 Paper]](https://aclanthology.org/2026.iwsds-1.22/) [[📚 Bibtex]](#citation)
@@ -6,13 +7,13 @@ _Galann Pennec, Zhengyuan Liu, Nicholas Asher, Philippe Muller, Nancy Chen_
 
 **Here we provide code for our Video Clip Selection pipeline for Efficient Long Movie Summarization.**
 
-**Description:** A lightweight and cost-effective framework for multimodal long-video summarization through LLM-guided clip selection.  
+**Description:** A lightweight and cost-effective framework for multimodal long-video summarization through LLM-guided clip selection.
 
 <p align="center">
 <img src="./figs/pipeline.png" width="768"/>
 </p>
 
-**Step-by-Step Approach:**
+**Step-by-Step Approach (see [Figure](#pipeline-fig)):**
 1. We segment videos into short clips of `20` seconds.
 2. We generate lightweight visual descriptions of those clips using an efficient VLM (`Qwen-2.5-Omni-{3,7}B`).
 3. These captions are then analyzed by a Large Language Model (`Gemini-{2.5,1.5}-Flash` or `Qwen2.5-72B-Instruct`) to identify the most visually informative moments.
