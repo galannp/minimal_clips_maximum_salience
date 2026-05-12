@@ -22,7 +22,7 @@ _Galann Pennec, Zhengyuan Liu, Nicholas Asher, Philippe Muller, Nancy Chen_
 5. We build a screenplay-like document that combines the selected visual elements with aligned transcripts.
 6. We summarize the built screenplays.
 
-By focusing on only a small subset of highly relevant clips, our method preserves critical visual information while drastically reducing computational costs by only using a small ratio of the video in input (e.g. 10%) while achieving strong summarization performance on the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) benchmark.
+By focusing on only a small subset of highly relevant clips, our method preserves critical visual information while drastically reducing computational costs by only using a small ratio of the video in input (e.g. 10%) while achieving strong summarization performance on the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) benchmark (see [Table](#results-tab)).
 
 We structure this repository as follows:
 1. [Loading the Data](#loading-the-data)
@@ -188,6 +188,14 @@ python -m summ.eval.traditional_metrics --truncate_length 1000 --expname `summma
 ```
 python -m summ.eval.MFactSum_fact_eval --truncate_length 1000 --expname `summmary_dir` --api_key `YOUR_GOOGLE_API_KEY`
 ```
+
+<a id="results-tab"></a>
+
+<p align="center">
+<img src="./figs/table_results.png" width="768"/>
+</p>
+
+**Table: Summarization results on the MovieSum test set using Gemini 2.5 Flash as the summarization model. We report visual recall (vis-rec), textual recall (text-rec), and MFactSum (MFS), as well as ROUGE-1 (R1), ROUGE-2 (R2), ROUGE-Lsum (RLSum), and METEOR. Best results are highlighted in bold.**
 
 ## Citation
 If you find this project useful in your research, please consider citing:
