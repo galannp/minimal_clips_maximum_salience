@@ -120,12 +120,12 @@ python -m clip_selection.silent.recaption_silent_clips --captioning_model gemini
 **1. Clip Selection Reference**  
 We automatically build a reference for the Clip Selection task given the existing annotations given in the `MovieSum` dataset.
 ```
-python -m upperbound.groundtruth_visual_facts
+python -m clip_selection.upperbound.groundtruth_visual_facts
 ```
 
 **2. [Optional] Recaptioning of the Selected Clips**
 ```
-python -m upperbound.extract_groundtruth_clips.py
+python -m clip_selection.upperbound.extract_groundtruth_clips.py
 python -m summ.recaption_clips --clip_selection upperbound --api_key `YOUR_GOOGLE_API_KEY`
 ```
 **3. Clip Selection Evaluation against the Reference**  
