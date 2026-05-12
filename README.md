@@ -42,7 +42,7 @@ Update dataset, model, and API key locations in [`paths.py`](paths.py) before ru
 
 ## Loading the Data
 Our experiments are made on the test split of the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) dataset made of 200 movies for evaluation.  
-**1. Download the videos**
+**1. Download the videos**  
 Download the videos in .mp4 for all the movies on [MovieBox](http://moviebox.ph/)
 
 **2. Extract the annotations in MovieSum test split**
@@ -64,7 +64,7 @@ python -m prepare_data.video_segmentation
 ```
 
 ## Video Clip Selection
-We set the number of selected clips `--nb_clips` to `50` in what follows (other values studied in the paper: `25`, `75`).
+We set the number of selected clips `--nb_clips` to `50` in what follows (other values studied in the paper: `25`, `75`).  
 Choose one of the following Clip Selection approaches:
 
 ### Our Clip Selection
@@ -87,12 +87,12 @@ python -m summ.recaption_clips --clip_selection ours --nb_clips 50 --api_key `YO
 
 ### Random Clips
 This baseline randomly selects `nb_clips` clips of 20 seconds from the whole video.  
-1. Random Clips Selection
+**1. Random Clips Selection**
 ```
 python -m clip_selection.random.random_clip_selection --nb_clips 50
 ```
 
-2. [Optional] Recaptioning of the Selected Clips
+**2. [Optional] Recaptioning of the Selected Clips**
 ```
 python -m summ.recaption_clips --clip_selection random --nb_clips 50 --api_key `YOUR_GOOGLE_API_KEY`
 ```
