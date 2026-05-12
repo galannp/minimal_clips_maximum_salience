@@ -14,14 +14,15 @@ _Galann Pennec, Zhengyuan Liu, Nicholas Asher, Philippe Muller, Nancy Chen_
 <img src="./figs/pipeline.png" width="768"/>
 </p>
 
-**Step-by-Step Approach (see [Figure](#pipeline-fig)):**
-1. We segment videos into short clips of `20` seconds.
+**Step-by-Step Approach ([Figure](#pipeline-fig)):**
+1. We segment movie videos into short clips of `20` seconds.
 2. We generate lightweight visual descriptions of those clips using an efficient VLM (`Qwen-2.5-Omni-{3,7}B`).
-3. These captions are then analyzed by a Large Language Model (`Gemini-{2.5,1.5}-Flash` or `Qwen2.5-72B-Instruct`) to identify the most visually informative moments.
-4. We build screenplay-like multimodal documents that combine selected visual events with aligned transcripts.
-5. We summarize the built screenplays.
+3. These captions are then analyzed by a Large Language Model (`Gemini-{2.5,1.5}-Flash` or `Qwen2.5-72B-Instruct`) to identify the most visually salient ones to build the multimodal summary.
+4. [Optional] Recaptioning of only the selected clips using a more robust VLM (`Gemini-2.5-Flash-Lite`).
+5. We build a screenplay-like document that combines the selected visual elements with aligned transcripts.
+6. We summarize the built screenplays.
 
-By focusing on only a small subset of highly relevant clips, our method preserves critical visual information while drastically reducing computational cost by only using a small ratio of the video in input (e.g. 10%) while achieving strong summarization performance on the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) benchmark.
+By focusing on only a small subset of highly relevant clips, our method preserves critical visual information while drastically reducing computational costs by only using a small ratio of the video in input (e.g. 10%) while achieving strong summarization performance on the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) benchmark.
 
 We structure this repository as follows:
 1. [Loading the Data](#loading-the-data)
