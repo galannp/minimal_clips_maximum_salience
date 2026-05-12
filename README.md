@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ## Configure Paths
 Update dataset, model, and API key locations in [`paths.py`](paths.py) before running the scripts.
 
-## Loading the Data
+## Loading the Data [`load_data/`](load_data)
 Our experiments are made on the test split of the [MovieSum](https://huggingface.co/datasets/rohitsaxena/MovieSum) dataset made of 200 movies for evaluation.  
 **1. Download the videos**  
 Download the videos in .mp4 for all the movies on [MovieBox](http://moviebox.ph/)
@@ -84,7 +84,7 @@ python -m clip_selection.ours.clip_selection --nb_clips 50 --few_shot_examples -
 
 **3. [Optional] Recaptioning of the Selected Clips**
 ```
-python -m summ.recaption_clips --clip_selection ours --nb_clips 50 --api_key `YOUR_GOOGLE_API_KEY`
+python -m clip_selection.recaption.recaption_clips --clip_selection ours --nb_clips 50 --api_key `YOUR_GOOGLE_API_KEY`
 ```
 
 ### Random Clips
@@ -96,7 +96,7 @@ python -m clip_selection.random.random_clip_selection --nb_clips 50
 
 **2. [Optional] Recaptioning of the Selected Clips**
 ```
-python -m summ.recaption_clips --clip_selection random --nb_clips 50 --api_key `YOUR_GOOGLE_API_KEY`
+python -m clip_selection.recaption.recaption_clips --clip_selection random --nb_clips 50 --api_key `YOUR_GOOGLE_API_KEY`
 ```
 
 ### Silent Clips
@@ -113,7 +113,7 @@ Flags:
 - `--captioning_model`: the models used for recaptioning the silent clips (use `gemini-2.5-flash-lite` or `qwen_omni`)
 ```
 python -m clip_selection.silent.extract_silent_clips --nb_clips 50
-python -m clip_selection.silent.recaption_silent_clips --captioning_model gemini-2.5-flash-lite --api_key `YOUR_GOOGLE_API_KEY`
+python -m clip_selection.recaption.recaption_silent_clips --captioning_model gemini-2.5-flash-lite --api_key `YOUR_GOOGLE_API_KEY`
 ```
 
 ## Clip Selection Evaluation
@@ -126,7 +126,7 @@ python -m clip_selection.upperbound.groundtruth_visual_facts
 **2. [Optional] Recaptioning of the Selected Clips**
 ```
 python -m clip_selection.upperbound.extract_groundtruth_clips.py
-python -m summ.recaption_clips --clip_selection upperbound --api_key `YOUR_GOOGLE_API_KEY`
+python -m clip_selection.recaption.recaption_clips --clip_selection upperbound --api_key `YOUR_GOOGLE_API_KEY`
 ```
 **3. Clip Selection Evaluation against the Reference**  
 By running the command below we are able to generate the following plots displaying the `Recall@K` for varying $\tau$.
