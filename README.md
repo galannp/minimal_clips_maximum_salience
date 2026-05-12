@@ -101,7 +101,7 @@ python -m clip_selection.recaption.recaption_clips --clip_selection random --nb_
 
 ### Silent Clips
 This baseline considers all video clips that occur during a pause in the dialogue following the approach of [(Pennec et al.,
-2025)](https://aclanthology.org/2025.ijcnlp-long.129/)).  
+2025)](https://aclanthology.org/2025.ijcnlp-long.129/).  
 Such clips are then sorted by decreasing duration and the `nb_clips` first are chosen.  
 **1. Silent Clips Selection**
 ```
